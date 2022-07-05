@@ -9,14 +9,11 @@ OUTPUT = "Output/"
 
 def defaultExcel():
     excel = pd.ExcelFile("Files/" + EXCEL_FILE_NAME)
-    df = excel.parse(FIRST_SHEET_NAME)
+    df1 = excel.parse(FIRST_SHEET_NAME)
+    df2 = excel.parse(SECOND_SHEET_NAME)
+    df = [df1, df2]
     return df
 
-def extract(df):
-    column = 0
-    workbook = xlwt.Workbook()
-    sheet = workbook.add_sheet(FIRST_SHEET_NAME)
-    sheet.write(column, 1, "HELLO")
 
 def getCompanyName(df):
     companies = []
@@ -36,7 +33,8 @@ def createSheet(df, file_name):
     # workbook.save(FILE_NAME)
     writer = pd.ExcelWriter(file_name, engine='xlsxwriter')
     # Write data to an excel
-    df.to_excel(writer,sheet_name=FIRST_SHEET_NAME,index=False)
+    df[0].to_excel(writer,sheet_name=FIRST_SHEET_NAME,index=False)
+    df[0].to_excel(writer,sheet_name=SECOND_SHEET_NAME,index=False)
     # Get sheet for conditional formatting 
     # worksheet = writer.sheets['Sheet1']
     # Add conditional formatting for Age column
@@ -46,11 +44,11 @@ def createSheet(df, file_name):
 
 def createSheets():
     df = defaultExcel()
-    companies = getCompanyName(df)
+    companies = getCompanyName(df[0])
     # for i in range(len(companies)):
     for i in range(4):
         array = [companies[i], companies[i]+" Total"]
-        new_df = df.loc[df['To Company'].isin(array)]
+        new_df = df[0].loc[df['To Company'].isin(array)]
         print("Creating", companies[i]+".xlsx")
         createSheet(new_df, OUTPUT+companies[i]+".xlsx")
         print("Done")
@@ -63,3 +61,7 @@ def main():
     print("Finish")
 
 main()
+
+#pecah df jadi 2
+#ambil nama companies 
+#tulis ke excel, check kalo sudah ada filenya
