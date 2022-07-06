@@ -39,7 +39,7 @@ for i in range(len(df2["From Company"])):
 print("Generating Files...")
 for i in range(len(companies_1)):
     # print(i)
-    path = OUTPUT+companies_1[i]+".xlsx"
+    path = OUTPUT+companies_1[i].replace("/","_")+".xlsx"
     new_df_1 = df1.loc[df1["To Company"].isin([companies_1[i], companies_1[i]+" Total"])]
     print("Creating Sheet 1", companies_1[i]+".xlsx")
     writer = pd.ExcelWriter(path, engine = 'xlsxwriter')
@@ -50,7 +50,7 @@ for i in range(len(companies_1)):
 
 for i in range(len(companies_2)):
     # print(i)
-    path = OUTPUT+companies_2[i]+".xlsx"
+    path = OUTPUT+companies_2[i].replace("/","_")+".xlsx"
     new_df_2 = df2.loc[df2["From Company"].isin([companies_2[i], companies_2[i]+" Total"])]
     print("Creating Sheet 2", companies_2[i]+".xlsx")
     try: 
