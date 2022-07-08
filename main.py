@@ -37,18 +37,20 @@ for i in range(len(df2["From Company"])):
 
 # print(companies_2, len(companies_2))
 print("Generating Files...")
-for i in range(len(companies_1)):
+# for i in range(len(companies_1)):
+for i in range(5):
     # print(i)
     path = OUTPUT+companies_1[i].replace("/","_")+".xlsx"
     new_df_1 = df1.loc[df1["To Company"].isin([companies_1[i], companies_1[i]+" Total"])]
     print("Creating Sheet 1", companies_1[i]+".xlsx")
     writer = pd.ExcelWriter(path, engine = 'xlsxwriter')
-    new_df_1.to_excel(writer, sheet_name = FIRST_SHEET_NAME)
+    new_df_1.to_excel(writer, index=False, sheet_name = FIRST_SHEET_NAME)
     writer.save()
     writer.close()
     # print(new_df_1)
 
-for i in range(len(companies_2)):
+# for i in range(len(companies_2)):
+for i in range(5):
     # print(i)
     path = OUTPUT+companies_2[i].replace("/","_")+".xlsx"
     new_df_2 = df2.loc[df2["From Company"].isin([companies_2[i], companies_2[i]+" Total"])]
@@ -59,7 +61,7 @@ for i in range(len(companies_2)):
         writer.book = book
     except:
         writer = pd.ExcelWriter(path, engine = 'xlsxwriter')
-    new_df_2.to_excel(writer, sheet_name = SECOND_SHEET_NAME)
+    new_df_2.to_excel(writer, index=False, sheet_name = SECOND_SHEET_NAME)
     writer.save()
     writer.close()
     # print(new_df_2)
