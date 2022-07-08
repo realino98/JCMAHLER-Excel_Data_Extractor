@@ -37,8 +37,8 @@ for i in range(len(df2["From Company"])):
 
 # print(companies_2, len(companies_2))
 print("Generating Files...")
-# for i in range(len(companies_1)):
-for i in range(5):
+for i in range(len(companies_1)):
+# for i in range(5):
     # print(i)
     path = OUTPUT+companies_1[i].replace("/","_")+".xlsx"
     new_df_1 = df1.loc[df1["To Company"].isin([companies_1[i], companies_1[i]+" Total"])]
@@ -49,8 +49,8 @@ for i in range(5):
     writer.close()
     # print(new_df_1)
 
-# for i in range(len(companies_2)):
-for i in range(5):
+for i in range(len(companies_2)):
+# for i in range(5):
     # print(i)
     path = OUTPUT+companies_2[i].replace("/","_")+".xlsx"
     new_df_2 = df2.loc[df2["From Company"].isin([companies_2[i], companies_2[i]+" Total"])]
