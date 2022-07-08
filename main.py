@@ -67,3 +67,49 @@ for i in range(len(companies_2)):
     # print(new_df_2)
 
 print("Excel File Generated to Output/..")
+from openpyxl import load_workbook
+
+outputs = os.listdir("Output/")
+for output in outputs:
+    try:
+        wb = load_workbook(OUTPUT+output)
+        ws = wb[FIRST_SHEET_NAME]
+        ws.column_dimensions["A"].width = 30
+        ws.column_dimensions["B"].width = 30
+        ws.column_dimensions["C"].width = 30
+        ws.column_dimensions["D"].width = 50
+        ws.column_dimensions["E"].width = 20
+        ws.column_dimensions["F"].width = 20
+        ws.column_dimensions["G"].width = 20
+        ws.column_dimensions["H"].width = 30
+        ws.column_dimensions["I"].width = 30
+        ws.column_dimensions["J"].width = 30
+        ws.column_dimensions["K"].width = 30
+        ws.column_dimensions["L"].width = 30
+        ws.column_dimensions["M"].width = 30
+        wb.save(OUTPUT+output)
+        wb.close()
+    except:
+        pass
+
+for output in outputs:
+    try:
+        wb = load_workbook(OUTPUT+output)
+        ws = wb[SECOND_SHEET_NAME]
+        ws.column_dimensions["A"].width = 30
+        ws.column_dimensions["B"].width = 30
+        ws.column_dimensions["C"].width = 30
+        ws.column_dimensions["D"].width = 50
+        ws.column_dimensions["E"].width = 20
+        ws.column_dimensions["F"].width = 20
+        ws.column_dimensions["G"].width = 20
+        ws.column_dimensions["H"].width = 30
+        ws.column_dimensions["I"].width = 30
+        ws.column_dimensions["J"].width = 30
+        ws.column_dimensions["K"].width = 30
+        ws.column_dimensions["L"].width = 30
+        ws.column_dimensions["M"].width = 30
+        wb.save(OUTPUT+output)
+        wb.close()
+    except:
+        pass
